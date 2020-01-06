@@ -21,6 +21,7 @@
     "@angular/router": "~8.2.7",
     "@iapps/ngx-dhis2-http-client": "^2.0.8-beta.3",
     "@ngrx/store": "^8.5.1",
+    "@ngrx/store-devtools": "^8.5.1",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",
     "zone.js": "~0.9.1"

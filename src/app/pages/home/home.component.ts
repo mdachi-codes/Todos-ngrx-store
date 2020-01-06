@@ -1,6 +1,11 @@
 import { Component, OnInit } from "@angular/core";
-import { NgxDhis2HttpClientService } from "@iapps/ngx-dhis2-http-client";
 import { TodosService } from "src/app/services/todos.service";
+import { Store } from "@ngrx/store";
+import { AppStateInterface } from "src/app/models/appState.model";
+import { Observable } from "rxjs";
+import { Todo } from "src/app/models/todo.model";
+import { todosSelector } from "src/app/Store/selectors/todos.selector";
+import { addTodoAction } from "src/app/Store/Actions/todos.action";
 
 @Component({
   selector: "app-home",
@@ -9,18 +14,19 @@ import { TodosService } from "src/app/services/todos.service";
 })
 export class HomeComponent implements OnInit {
   constructor(
-    private http: NgxDhis2HttpClientService,
-    private todoServices: TodosService
-  ) {}
+    private todoServices: TodosService,
+    private store: Store<AppStateInterface>
+  ) {
+    this.todosList$ = this.store.select(todosSelector);
+    console.log(this.todosList$);
+  }
 
-  public todosList: Array<{}> = [];
+  public todosList$: Observable<Array<Todo>>;
+  public TodoToAdd: Todo = { activity: "some activity", done: true };
 
-  ngOnInit() {
-    this.todoServices.getTodos().subscribe(
-      todos => {
-        this.todosList = todos;
-      },
-      error => {}
-    );
+  ngOnInit() {}
+
+  addTodo() {
+    this.store.dispatch(addTodoAction({ payload: this.TodoToAdd }));
   }
 }

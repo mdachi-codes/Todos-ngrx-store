@@ -1,5 +1,9 @@
 <div class="container">
-  <ul *ngFor="let todo of todosList">
+  <!-- <ul *ngFor="let todo of todosList$ | async">
     <li>{{ todo.activity }}</li>
-  </ul>
+  </ul> -->
+
+  <button (click)="addTodo()">Add Todo</button>
+
+  {{ todosList$ | async | json }}
 </div>
