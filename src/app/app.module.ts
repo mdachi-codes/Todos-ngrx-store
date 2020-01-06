@@ -10,7 +10,7 @@ import { HomeComponent } from "./pages/home/home.component";
 import { StoreModule } from "@ngrx/store";
 import { StoreDevtoolsModule } from "@ngrx/store-devtools";
 import { environment } from "../environments/environment";
-import { reducer } from "./Store/Reducers/Todos.reducer";
+import * as fromHomePage from "./Store/Reducers/Todos.reducer";
 
 @NgModule({
   declarations: [AppComponent, HomeComponent],
@@ -23,7 +23,7 @@ import { reducer } from "./Store/Reducers/Todos.reducer";
       version: 1,
       models: {}
     }),
-    StoreModule.forRoot({ todo: reducer }),
+    StoreModule.forRoot({ todos: fromHomePage.reducer }),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: environment.production
