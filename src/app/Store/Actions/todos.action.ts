@@ -6,7 +6,9 @@ export const getTodosAction = createAction("[Home Page] GetTodos");
 
 export const addTodoAction = createAction(
   "[Home Page] AddTodo",
-  props<{ activity: string; done: boolean }>()
+  props<{ todo: Todo }>()
 );
+
+export const loadTodoAction = createAction("[Home Page] load todo");
 
 export const deleteTodoAction = createAction("[Home Page] DeleteTodo");

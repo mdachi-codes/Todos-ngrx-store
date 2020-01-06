@@ -24,11 +24,10 @@ const todosReducer = createReducer(
   on(HomePageActions.getTodosAction, state => {
     return state;
   }),
-  on(HomePageActions.addTodoAction, (state, { activity, done }) => {
-    //console.log("i get here", activity, done);
-    [...state.todos, { activity: activity, done: done }];
-    return state;
-  }),
+  on(HomePageActions.addTodoAction, (state, { todo }) => ({
+    ...state,
+    todos: [...state.todos, todo]
+  })),
   on(HomePageActions.deleteTodoAction, state => {
     return state;
   })

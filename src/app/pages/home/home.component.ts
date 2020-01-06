@@ -27,6 +27,6 @@ export class HomeComponent implements OnInit {
   ngOnInit() {}
 
   addTodo() {
-    this.store.dispatch(addTodoAction(this.TodoToAdd));
+    this.store.dispatch(addTodoAction({ todo: this.TodoToAdd }));
   }
 }

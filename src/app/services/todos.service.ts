@@ -1,5 +1,7 @@
 import { Injectable } from "@angular/core";
 import { NgxDhis2HttpClientService } from "@iapps/ngx-dhis2-http-client";
+import { Observable, of } from "rxjs";
+import { Todo } from "../models/todo.model";
 
 @Injectable({
   providedIn: "root"
@@ -11,7 +13,9 @@ export class TodosService {
     return this.http.get("dataStore/Todos_app/Todoslist");
   }
 
-  addTodo() {}
+  getTodo(): Observable<Todo> {
+    return of({ activity: "testing", done: true });
+  }
 
   deleteTodo() {}
 }
