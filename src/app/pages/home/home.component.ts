@@ -18,7 +18,7 @@ export class HomeComponent implements OnInit {
     private store: Store<AppStateInterface>
   ) {
     this.todosList$ = this.store.select(todosSelector);
-    console.log(this.todosList$);
+    //console.log(this.todosList$);
   }
 
   public todosList$: Observable<Array<Todo>>;
@@ -27,6 +27,6 @@ export class HomeComponent implements OnInit {
   ngOnInit() {}
 
   addTodo() {
-    this.store.dispatch(addTodoAction({ payload: this.TodoToAdd }));
+    this.store.dispatch(addTodoAction(this.TodoToAdd));
   }
 }
