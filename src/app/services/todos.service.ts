@@ -9,13 +9,27 @@ import { Todo } from "../models/todo.model";
 export class TodosService {
   constructor(private http: NgxDhis2HttpClientService) {}
 
+  todosURL: string = "dataStore/Todoslist";
+
+  newId: string;
+
   getTodos() {
-    return this.http.get("dataStore/Todos_app/Todoslist");
+    return this.http.get(this.todosURL);
   }
 
-  getTodo(): Observable<Todo> {
-    return of({ activity: "testing", done: true });
+  getTodo(id: string) {
+    return this.http.get(this.todosURL + "/" + id);
   }
 
-  deleteTodo() {}
+  addTodo(todo: Todo) {
+    /*
+      --- ADD CODE TO GENERATE ID ----
+    */
+
+    return this.http.post(this.todosURL + "/" + this.newId, todo);
+  }
+
+  deleteTodo(id: string) {
+    return this.http.delete(this.todosURL + "/" + id);
+  }
 }
