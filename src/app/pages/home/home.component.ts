@@ -5,7 +5,10 @@ import { AppStateInterface } from "src/app/models/appState.model";
 import { Observable } from "rxjs";
 import { Todo } from "src/app/models/todo.model";
 import { todosSelector } from "src/app/Store/selectors/todos.selector";
-import { addTodoAction } from "src/app/Store/Actions/todos.action";
+import {
+  addTodoAction,
+  getTodosAction
+} from "src/app/Store/Actions/todos.action";
 
 @Component({
   selector: "app-home",
@@ -24,7 +27,9 @@ export class HomeComponent implements OnInit {
   public todosList$: Observable<Array<Todo>>;
   public TodoToAdd: Todo = { activity: "some activity", done: true };
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.store.dispatch(getTodosAction());
+  }
 
   addTodo() {
     this.store.dispatch(addTodoAction({ todo: this.TodoToAdd }));
